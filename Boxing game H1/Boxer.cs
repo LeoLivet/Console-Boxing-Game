@@ -23,6 +23,7 @@ namespace Boxinggame
 
         public Boxer()
         {
+            _name = Name;
             _maxhealth = 100;
             _currenthealth = _maxhealth;
             _healchance = 5;
@@ -35,7 +36,11 @@ namespace Boxinggame
         public void Attack(Boxer D)
         {
             D.CurrentHealth = D.CurrentHealth - Damage;
-            ConsoleGUI
+
+            if (D.CurrentHealth <= 0)
+            {
+
+            }
         }
 
         public void TryHeal()

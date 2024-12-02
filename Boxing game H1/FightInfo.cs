@@ -24,6 +24,18 @@ namespace Boxing_game_H1
             _noOfRounds = _maxRounds;
         }
 
+        public bool IsMatchOnGoing(bool Bool)
+        {
+            if (Bool)
+            {
+                return isMatchOngoing = true;
+            }
+            else
+            {
+                return isMatchOngoing = false;
+            }
+        }
+
         public int noOfRounds
         {
             get { return _noOfRounds; }
@@ -41,7 +53,7 @@ namespace Boxing_game_H1
             get { return _currentMatch; }
             set { _currentMatch = value; }
         }
-        
+
         public bool isMatchOngoing
         {
             get { return _isMatchOnGoing; }

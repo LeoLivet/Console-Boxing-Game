@@ -14,8 +14,6 @@ namespace Boxing_game_H1
         int _newCursorTop;
         int _newCursorBottom;
 
-        Boxer boxer1 = new();
-
         public int OriginalCursorTop
         {
             get { return _originalCursorTop; }
@@ -39,26 +37,28 @@ namespace Boxing_game_H1
 
         public void ScrollingMessage(string message)
         {
+        Console.CursorVisible = false;
+
             foreach (char line in message.ToCharArray())
             {
-                Console.CursorVisible = false;
                 Console.Write(line);
                 Thread.Sleep(10);
-                Console.CursorVisible = true;
             }
+
+        Console.CursorVisible = true;
         }
 
-        public void HealhTracker(int b1, string b1Name ,int b2,string b2name, int match)
+        public static void HealhTracker(Boxer b1, Boxer b2, MatchSettings match)
         {
             int originalCursorTop = Console.CursorTop;
             int originalCursorLeft = Console.CursorLeft;
 
             Console.CursorVisible = false;
             Console.SetCursorPosition(originalCursorTop + 4, 2);
-            Console.Write($"Round: {match} {boxer1.Name} HP:[{boxer1.CurrentHealth:000}] {b2name} HP:[{b2:000}]".PadLeft(50, '-').PadRight(50, '-'));
+            Console.Write($"Round: {match.currentMatch} {b1.Name} HP:[{b1.CurrentHealth:000}] {b2.Name} HP:[{b2:000}]".PadLeft(50, '-').PadRight(50, '-'));
             Console.SetCursorPosition(originalCursorLeft, originalCursorTop);
             Console.CursorVisible = true;
-          
+
             return;
         }
         //public string CurrentMatchWriter()

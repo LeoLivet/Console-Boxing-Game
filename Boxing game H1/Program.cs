@@ -17,8 +17,8 @@ b2.HealChance = 5;
 MatchSettings match1 = new();
 match1.isMatchOngoing = new();
 
-ConsoleGUI GUI = new();
 ConsoleGUI MatchAndHPTimer = new();
+ConsoleGUI GUI = new();
 
 Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight / 2);
 match1.matchTime = 5;
@@ -26,7 +26,6 @@ match1.matchTime = 5;
 
 int rounds = match1.noOfRounds;
 int currentMatch = match1.currentMatch;
-MatchAndHPTimer.HealhTracker(b1.CurrentHealth, b1.Name, b2.CurrentHealth, b2.Name, currentMatch);
 
 
 
@@ -37,6 +36,7 @@ Thread.Sleep(1000);
 //Console.ReadLine();
 Console.Clear();
 
+
 match1.isMatchOngoing = true;
 while (match1.isMatchOngoing)
 {
@@ -44,11 +44,13 @@ while (match1.isMatchOngoing)
     for (match1.currentMatch = 0; match1.currentMatch < match1.noOfRounds; match1.currentMatch++) // Rounds
     {
         if (!match1.isMatchOngoing) { break; }
-        Console.WriteLine((match1.currentMatch));
         for (int j = 0; j < match1.matchTime; j++)//Seconds in the round
         {
             if (!match1.isMatchOngoing) { break; }
+            
             b1.Attack(b2);
+            if (!match1.isMatchOngoing) { break; }
+
             b2.Attack(b1);
 
 
@@ -109,27 +111,3 @@ void checkKO(Boxer b1, Boxer b2)
         //return;
     }
 }
-
-void ScrollingMessage(string message)
-{
-
-    foreach (char line in message.ToCharArray())
-    {
-        Console.Write(line);
-        Thread.Sleep(50);
-    }
-}
-
-if (b1.CurrentHealth < b2.CurrentHealth)
-{
-    Console.WriteLine($"{b2.Name} is the winner");
-}
-else if (b1.CurrentHealth > b2.CurrentHealth)
-{
-    Console.WriteLine($"{b1.Name} is the winner");
-}
-else
-{
-    Console.WriteLine($"Its a tie!");
-}
-
